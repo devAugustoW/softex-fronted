@@ -1,7 +1,7 @@
 /*
 1. Crie uma variável chamada "nome" e atribua a ela uma string com seu nome. Em seguida, exiba oconteúdo da variável "nome" no terminal.
 */
-let nome: string = "Augusto";
+let nome2: string = "Augusto";
 console.log(nome);
 
 
