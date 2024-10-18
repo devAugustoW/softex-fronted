@@ -1,11 +1,14 @@
+import { v4 as uuidv4 } from 'uuid';
 import { Product } from './entities/product.js';
 import { Cart } from './entities/cart.js';
 import { renderProduct } from './views/renderProduct.js';
 import { renderCart } from './views/renderCart.js';
+import { openModal } from './entities/modal.js';
 
 const cart = new Cart();
+let products: Product[] = []; // Armazena os produtos carregados
 
-async function loadProducts() {
+export async function loadProducts() {
   try {
     const response = await fetch('./data.json');
     const data = await response.json();
@@ -18,7 +21,9 @@ async function loadProducts() {
     productContainer.innerHTML = '';
 
     data.forEach((item: any) => {
-      const product = new Product(item.id, item.name, item.category, item.price, item.image.thumbnail);
+      const productId = uuidv4(); // Gere um ID único para cada produto
+      const product = new Product(productId, item.name, item.category, item.price, item.image.desktop); // Use a imagem para desktop
+      products.push(product); // Armazena o produto na lista
       const productHTML = renderProduct(product);
       productContainer.insertAdjacentHTML('beforeend', productHTML);
       setupProductEventListeners(product);
@@ -30,6 +35,10 @@ async function loadProducts() {
 
 function setupProductEventListeners(product: Product) {
   const btnCardContainer = document.querySelector(`.btn-card-container[data-id="${product.id}"]`) as HTMLElement;
+  if (!btnCardContainer) {
+    console.warn(`Elemento não encontrado para o produto com ID: ${product.id}`);
+    return;
+  }
   const btnAddToCart = btnCardContainer.querySelector('.btn-add-to-cart') as HTMLElement;
   const btnQuantityControl = btnCardContainer.querySelector('.btn-quantity-control') as HTMLElement;
   const btnDecrease = btnCardContainer.querySelector('.btn-decrease') as HTMLElement;
@@ -78,13 +87,28 @@ function updateProductUI(product: Product, itemCount: HTMLElement, btnAddToCart:
   }
 }
 
-function updateCartUI() {
+export function updateCartUI() {
   const cartContainer = document.querySelector('.cart') as HTMLElement;
   if (cartContainer) {
     const cartHTML = renderCart(cart.getItems(), cart.getTotalQuantity(), cart.getTotalPrice());
     cartContainer.innerHTML = cartHTML;
     setupCartEventListeners();
   }
+}
+
+export function resetProductUI() {
+  products.forEach(product => {
+    product.resetQuantity(); // Redefine a quantidade interna do produto
+    const btnCardContainer = document.querySelector(`.btn-card-container[data-id="${product.id}"]`) as HTMLElement;
+    if (btnCardContainer) {
+      const itemCount = btnCardContainer.querySelector('.item-count') as HTMLElement;
+      const btnAddToCart = btnCardContainer.querySelector('.btn-add-to-cart') as HTMLElement;
+      const btnQuantityControl = btnCardContainer.querySelector('.btn-quantity-control') as HTMLElement;
+      updateProductUI(product, itemCount, btnAddToCart, btnQuantityControl, btnCardContainer);
+    } else {
+      console.warn(`Elemento não encontrado para o produto com ID: ${product.id}`);
+    }
+  });
 }
 
 function setupCartEventListeners() {
@@ -110,37 +134,8 @@ function setupCartEventListeners() {
 
   const confirmOrderButton = cartContainer.querySelector('.btn-confirm-order') as HTMLButtonElement;
   if (confirmOrderButton) {
-    confirmOrderButton.addEventListener('click', openConfirmOrderModal);
+    confirmOrderButton.addEventListener('click', () => openModal('confirmOrderModal', cart));
   }
-}
-
-function openConfirmOrderModal() {
-  const modal = document.getElementById('confirmOrderModal') as HTMLElement;
-  modal.style.display = 'block';
-
-  const closeButton = modal.querySelector('.close') as HTMLElement;
-  closeButton.addEventListener('click', closeConfirmOrderModal);
-
-  window.addEventListener('click', (event) => {
-    if (event.target === modal) {
-      closeConfirmOrderModal();
-    }
-  });
-
-  const finalizeOrderButton = modal.querySelector('.btn-finalize-order') as HTMLButtonElement;
-  finalizeOrderButton.addEventListener('click', finalizeOrder);
-}
-
-function closeConfirmOrderModal() {
-  const modal = document.getElementById('confirmOrderModal') as HTMLElement;
-  modal.style.display = 'none';
-}
-
-function finalizeOrder() {
-  console.log('Pedido finalizado!');
-  closeConfirmOrderModal();
-  cart.clear();
-  updateCartUI();
 }
 
 document.addEventListener('DOMContentLoaded', () => {

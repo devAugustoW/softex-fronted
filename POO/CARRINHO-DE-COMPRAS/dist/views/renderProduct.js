@@ -1,11 +1,9 @@
-import { Product } from '../entities/product.js';
-
-export function renderProduct(product: Product): string {
-  return `
+export function renderProduct(product) {
+    return `
   <div class="card">
     <div class="card-top">
       <div class="img-card-space">
-        <img class="img-card" src="${product.imageUrl}" alt="${product.name}" style="width: 100%; height: auto;">
+        <img class="img-card" src="${product.imageUrl}" alt="${product.name}">
       </div>
 
       <div class="btn-card-container" data-id="${product.id}">
@@ -32,3 +30,4 @@ export function renderProduct(product: Product): string {
   </div>
   `;
 }
+//# sourceMappingURL=renderProduct.js.map

@@ -34,4 +34,8 @@ export class Product {
       this._quantity--;
     }
   }
+
+	resetQuantity(): void {
+    this._quantity = 0;
+  }
 }
