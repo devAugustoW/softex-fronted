@@ -20,7 +20,6 @@ Clone simplificado do Instagram desenvolvido utilizando **TypeScript**, **HTML**
 - **Estilização Responsiva**
 - **Organização de Código**
 
-
 ### Programação Orientada a Objetos (POO)
 
 - **Classes e Objetos**
@@ -52,9 +51,9 @@ Clone simplificado do Instagram desenvolvido utilizando **TypeScript**, **HTML**
 
 ## Tecnologias Utilizadas
 
-- ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white) **HTML5**: Estrutura básica da aplicação.
-- ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white) **CSS3**: Estilização e layout responsivo.
-- ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white) **TypeScript**: Programação orientada a objetos e manipulação dinâmica do DOM.
-- ![Faker](https://img.shields.io/badge/Faker-FF69B4?style=for-the-badge&logo=faker&logoColor=white) **@faker-js/faker**: Geração de dados fictícios.
-- ![UUID](https://img.shields.io/badge/UUID-4CAF50?style=for-the-badge&logo=uuid&logoColor=white) **UUID**: Geração de identificadores únicos.
-- ![Font Awesome](https://img.shields.io/badge/Font%20Awesome-339AF0?style=for-the-badge&logo=font-awesome&logoColor=white) **Font Awesome**: Ícones para a interface de usuário.
+- ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white) 
+- ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white) 
+- ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white) 
+- ![Faker](https://img.shields.io/badge/Faker-FF69B4?style=for-the-badge&logo=faker&logoColor=white)
+- ![UUID](https://img.shields.io/badge/UUID-4CAF50?style=for-the-badge&logo=uuid&logoColor=white) 
+- ![Font Awesome](https://img.shields.io/badge/Font%20Awesome-339AF0?style=for-the-badge&logo=font-awesome&logoColor=white) 
