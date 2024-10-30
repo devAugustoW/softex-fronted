@@ -12,7 +12,7 @@ const ChangeColor = () => {
 	return (
 		<button
       onClick={changeColor}
-      className={`px-4 py-2 text-white rounded ${colors[currentColorIndex]}`}
+      className={`self-start px-4 py-2 text-white rounded ${colors[currentColorIndex]}`}
     >
 			Mudar de cor
 		</button>

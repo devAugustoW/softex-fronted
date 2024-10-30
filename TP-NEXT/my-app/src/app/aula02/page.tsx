@@ -1,5 +1,5 @@
 import React from 'react';
-import ButtonAlert from './ButtonAlert';
+import Salute from './Salute';
 import ChangeColor from './ChangeColor';
 import BtnViaCep from './BtnViaCep'
 
@@ -164,10 +164,61 @@ export default function RootLayout({
 
 			<section className="p-4">
 				<h2 className="text-2xl font-semibold">Componente Button</h2>
-				<p>Vamos criar alguns buttons e realizar algumas ações com eles.</p>
+				<p>Vamos criar alguns botões e realizar algumas ações com eles.</p>
 
-				<div className='flex flex-col mt-4 mb-4 w-[200px]'>
-					<ButtonAlert />
+				<div className="flex flex-col mt-4 mb-4">
+					<p className="text-lg mb-2">Saudação com alert</p>
+					<p>Criar componente 'Salute':</p>
+
+					<div className="bg-gray-100 p-4 rounded mb-4">
+						<p>
+							Dentro da pasta <code>components</code>, crie o arquivo <code> Salute.tsx</code>:
+						</p>
+
+						<div className="bg-gray-100 p-4 rounded mb-4">
+							<pre className="bg-gray-200 p-4 rounded overflow-x-auto">
+								<code className="text-sm">
+									{`"use client"
+import React from 'react';
+
+const Salute = () => {
+
+  function showSalute() {
+    alert("Saudações, Programador!");
+  };
+
+  return (
+    <button 
+      onClick={showSalute} 
+      className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 mb-4">
+      Saudação
+    </button>
+  );
+};
+
+export default Salute;`}
+								</code>
+							</pre>
+						</div>
+						<p>Importar componente Salute em aula02.tsx</p>
+
+						<p>
+							Neste código, usamos o comando <code>'use client'</code> no início do
+							componente. Esse comando indica que o componente <code>Salute</code>{' '}
+							deve ser executado no lado do cliente (navegador). Isso é necessário
+							porque a função <code>alert</code> só funciona no navegador e não no
+							servidor.
+						</p>
+
+						<p>
+							O botão "Saudação" chama a função <code>showSalute</code> ao ser
+							clicado, exibindo uma mensagem de saudação em um alerta. As classes do
+							Tailwind aplicam estilos como cor de fundo, bordas arredondadas e
+							mudança de cor ao passar o mouse.
+						</p>
+					</div>
+
+					<Salute />
 					<ChangeColor />
 				</div>
 			</section>
