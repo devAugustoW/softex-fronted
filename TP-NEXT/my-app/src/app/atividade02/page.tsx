@@ -1,9 +1,9 @@
 //Atividade02.tsx
 import React from 'react';
-import Quadrado from './Quadrado.tsx';
-import Titulo from './Titulo.tsx';
-import ButtonClick from './ButtonClick.tsx';
-import ListaItens from './ListaItens.tsx';
+import Quadrado from './Quadrado';
+import Titulo from './Titulo';
+import ButtonClick from './ButtonClick';
+import ListaItens from './ListaItens';
 import Imagem from './Imagem';
 import Paragrafo from './Paragrafo';
 import Cabecalho from './Cabecalho';
