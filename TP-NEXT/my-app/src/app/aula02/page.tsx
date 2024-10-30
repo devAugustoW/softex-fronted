@@ -1,6 +1,8 @@
 import React from 'react';
-import MyButtonComponent from '@/app/components/MyButtonComponent';
-import MyCountComponent from '@/app/components/MyCountComponent';
+import ButtonAlert from './ButtonAlert';
+import ChangeColor from './ChangeColor';
+import BtnViaCep from './BtnViaCep'
+
 
 const Aula02 = () => {
   return (
@@ -8,9 +10,9 @@ const Aula02 = () => {
       <h1 className="text-3xl font-bold mb-4">Aula 02: Componentes</h1>
 
       <section className="mb-6">
-        <h2 className="text-2xl font-semibold mb-2">O que são Componentes?</h2>
+        <h2 className="text-2xl font-semibold mb-2">Componentes </h2>
         <p className="mb-4">
-          Um componente é uma parte reutilizável da interface de usuário que encapsula umcomportamento específico.
+         	São elementos modularizados e reutilizaveis. Reduzem a escrita de código e facilita a manutenção.
         </p>
       </section>
 
@@ -30,70 +32,151 @@ const Aula02 = () => {
         <h2 className="text-2xl font-semibold mb-2">Criando um Componente</h2>
         <ol className="list-decimal list-inside mb-4">
           <li className="mb-2">
-            <strong>Criar pasta para os componentes:</strong> Dentro da pasta <code>src</code>, criar pasta <code>components</code>.
+            <strong>Criar pasta para os componentes:</strong> Dentro da pasta <code>'app'</code>, criar pasta <code>components</code>.
           </li>
           <li className="mb-2">
-            <strong>Criar um componente:</strong> Dentro da pasta <code>components</code>, crie um arquivo
-            chamado <code>MyButtonComponent.tsx</code>.
+            <strong>Criar um componente:</strong> Dentro da pasta <code>components</code>, crie um arquivo chamado <code>Sidebar.tsx</code>.
           </li>
-					<li>
-						<strong>Inserir "use client" no componente: </strong>
-						<code>
-							 "use client"; por padrão, o sistema de rotas do Next.js (usando o diretório app/) trata todos os componentes como Server Components. No entanto, o MyButtonComponent está usando interatividade (como o evento onClick), que requer que ele seja tratado como um Client Component.
-						</code>
-					</li>
         </ol>
-				<MyButtonComponent />
+
       </section>
 
 			<section className="p-4">
-				<h2 className='text-2xl font-semibold'>Componente Contador</h2>
+				<h2 className="text-2xl font-semibold">Componente Sidebar</h2>
+				<p>Dentro da pasta 'components', crie o arquivo 'Sidebar.tsx'</p>
 
 				<div className="bg-gray-100 p-4 rounded mb-4">
-          <pre className="bg-gray-200 p-4 rounded overflow-x-auto">
-            <code className="text-sm">
-              {`"use client";
+					<pre className="bg-gray-200 p-4 rounded overflow-x-auto">
+						<code className="text-sm">
+							{`import Link from 'next/link';
+import React from 'react';
 
-import React, { useState } from "react";
+const Sidebar = () => {
 
-const MyCountComponent = () => {
-  const [count, setCount] = useState(0);
+  return(
+    <aside 
+      className='w-[250px] min-h-screen bg-gray-200 flex-shrink-0'>
+      <h2 className='text-2xl font-semibold mb-4'>Menu</h2>
+      <nav>
+        <ul className='space-y-4 ml-2'>
+          <li><Link className='text-blue-600 hover:underline' href='/'>Home</Link></li>
+          <li><Link className='text-blue-600 hover:underline' href='/aula01'>Aula 01</Link></li>
+          <li><Link className='text-blue-600 hover:underline' href='/aula02'>Aula 02</Link></li>
+          <li><Link className='text-blue-600 hover:underline' href='/atividade02'>Atividade 02</Link></li>
+          <li><Link className='text-blue-600 hover:underline' href='/atividadeState'>Atividade State</Link></li>
+        </ul>
+      </nav>
+    </aside>
+  )
+}
+export default Sidebar;`}
+						</code>
+					</pre>
+				</div>
 
-  const increment = () => setCount(count + 1);
-  const decrement = () => {
-    if (count > 0) setCount(count - 1);
-  };
+				<p>Importar Sidebar em <code>layout.tsx</code></p>
+				<div className='bg-gray-100 p-4 rounded mb-4'>
+					<pre className="bg-gray-200 p-4 rounded overflow-x-auto">
+						<code className="text-sm">
+							{`import './globals.css';
+import Sidebar from '@/app/components/Sidebar';
 
-  return (
-    <div className="flex flex-col items-center">
-      <h2 className="text-2xl font-semibold mb-4">
-        Contador: {count}
-      </h2>
-      <div className="flex gap-4">
-        <button
-          className="bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded"
-          onClick={decrement}
-        >
-          Decrementar
-        </button>
-        <button
-          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-          onClick={increment}
-        >
-          Incrementar
-        </button>
-      </div>
-    </div>
-  );
-};
-export default MyCountComponent;`}
-            </code>
-          </pre>
-        </div>
+export default function RootLayout({ 
+	children,
+}: Readonly<{ children: React.ReactNode; }>) {
 
-				<MyCountComponent />
+	return (
+		<html lang="pt-br">
+			<body className='flex'>
+			<Sidebar />
+
+				<main className='flex-grow p-8'>
+					{children}
+				</main>
+			</body>
+		</html>
+	);
+}`}
+						</code>
+					</pre>
+				</div>
 			</section>
 
+			<section className="p-4">
+				<h2 className="text-2xl font-semibold">Componente Header</h2>
+				<p>Dentro da pasta 'components', crie o arquivo 'Header.tsx'</p>
+
+				<div className="bg-gray-100 p-4 rounded mb-4">
+					<pre className="bg-gray-200 p-4 rounded overflow-x-auto">
+						<code className="text-sm">
+{`import Link from "next/link";
+
+const Header = () => {
+  return (
+    <header className="w-full border-b border-black py-5">
+      <nav>
+        <ul className="flex justify-center gap-4">
+          <li><Link href="/">Página Home</Link></li>
+          <li><Link href="/register">Página Register</Link></li>
+          <li><Link href="/sign-in">Página SignIn</Link></li>
+        </ul>
+      </nav>
+    </header>
+  );
+}
+export default Header;`}
+						</code>
+					</pre>
+				</div>
+
+				<p>Importar Header em <code>layout.tsx</code></p>
+				<div className='bg-gray-100 p-4 rounded mb-4'>
+					<pre className="bg-gray-200 p-4 rounded overflow-x-auto">
+						<code className="text-sm">
+{`import './globals.css';
+import Sidebar from '@/app/components/Sidebar';
+import Header  from './components/Header';
+
+export default function RootLayout({ 
+		children,
+	}: Readonly<{ children: React.ReactNode; }>) {
+
+	return (
+		<html lang="pt-br">
+			<body className="flex flex-col min-h-screen">
+				<Header />
+
+				<div className="flex flex-grow">
+					<Sidebar />
+
+					<main className="flex-grow p-8 bg-gray-50">
+						{children}
+					</main>
+				</div>
+			</body>
+		</html>
+	);
+}`}
+						</code>
+					</pre>
+				</div>
+			</section>
+
+			<section className="p-4">
+				<h2 className="text-2xl font-semibold">Componente Button</h2>
+				<p>Vamos criar alguns buttons e realizar algumas ações com eles.</p>
+
+				<div className='flex flex-col mt-4 mb-4 w-[200px]'>
+					<ButtonAlert />
+					<ChangeColor />
+				</div>
+			</section>
+
+			<section className="p-4">
+			<h2 className="text-2xl font-semibold mb-4"> Integrar botão com API Via Fetch</h2>
+
+			<BtnViaCep />
+			</section>
     </article>
   )
 }
