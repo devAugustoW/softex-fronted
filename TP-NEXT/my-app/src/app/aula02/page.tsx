@@ -38,7 +38,6 @@ const Aula02 = () => {
             <strong>Criar um componente:</strong> Dentro da pasta <code>components</code>, crie um arquivo chamado <code>Sidebar.tsx</code>.
           </li>
         </ol>
-
       </section>
 
 			<section className="p-4">
@@ -95,8 +94,7 @@ export default function RootLayout({
 				</main>
 			</body>
 		</html>
-	);
-}`}
+	);}`}
 						</code>
 					</pre>
 				</div>
@@ -200,8 +198,8 @@ export default Salute;`}
 								</code>
 							</pre>
 						</div>
-						<p>Importar componente Salute em aula02.tsx</p>
 
+						<p>Importar componente Salute em aula02.tsx</p>
 						<p>
 							Neste código, usamos o comando <code>'use client'</code> no início do
 							componente. Esse comando indica que o componente <code>Salute</code>{' '}

@@ -27,7 +27,7 @@ const Aula01 = () => {
 ├── .eslintrc.json
 ├── .gitignore
 ├── next-env.d.ts          # Declarações de tipo para o Next.js
-├── next.config.mjs
+├── next.config.mjs        # Declarações de variáveis de ambiente
 ├── package-lock.json
 ├── package.json
 ├── postcss.config.mjs
@@ -39,6 +39,75 @@ const Aula01 = () => {
 
 			<section className="mb-6">
 				<h3 className="text-xl text-gray-800 font-semibold mb-2">Explicando algumas pastas e arquivos</h3>
+
+				<div className='mb-4'>
+					<h4 className="font-semibold text-gray-700">next.config.mjs/</h4>
+					<p>
+						é usado para configurar opções avançadas em projetos feitos com Next.js. Esse arquivo permite ajustar diversas configurações do framework, como otimização de imagens, manipulação de rotas, definições de variáveis de ambiente e outras opções de desempenho e comportamento da aplicação.
+					</p>
+					
+					<div className='bg-gray-100 p-4 rounded mb-4'>
+						<pre className="bg-gray-200 p-4 rounded overflow-x-auto">
+							<code className="text-sm">
+								{`/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // Ativa o modo estrito do React para detectar possíveis problemas
+  reactStrictMode: true,
+
+  // Configurações de otimização de imagens
+  images: {
+    domains: ['example.com'], // Permite carregar imagens de domínios específicos
+    deviceSizes: [640, 750, 1080, 1200, 1920], // Define os tamanhos de dispositivos para otimização
+  },
+
+  // Redirecionamentos de URL
+  async redirects() {
+    return [
+      {
+        source: '/old-path', // URL antiga
+        destination: '/new-path', // URL nova
+        permanent: true, // Define se o redirecionamento é permanente (status 308)
+      },
+    ]
+  },
+
+  // Reescrita de rotas
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*', // URL original
+        destination: 'https://external-api.com/:path*', // URL de destino externa
+      },
+    ]
+  },
+
+  // Suporte a internacionalização (i18n)
+  i18n: {
+    locales: ['en', 'pt', 'es'], // Idiomas disponíveis na aplicação
+    defaultLocale: 'en', // Idioma padrão
+  },
+
+  // Configurações de Webpack personalizadas (opcional)
+  webpack: (config) => {
+    // Exemplo: adicione uma nova regra para lidar com arquivos .svg como React components
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ['@svgr/webpack'],
+    });
+    return config;
+  },
+
+  // Ativa o novo layout app router (somente em versões recentes do Next.js)
+  experimental: {
+    appDir: true, // Ativa o novo sistema de roteamento baseado em pastas
+  },
+}
+export default nextConfig;`}
+							</code>
+						</pre>
+					</div>
+				</div>
+
 				<div className="mb-4">
 					<h4 className="font-semibold text-gray-700">src/</h4>
 					<p className='text-gray-600'>
@@ -46,6 +115,7 @@ const Aula01 = () => {
 						estilos e assets são organizados aqui.
 					</p>
 				</div>
+
 				<div className="mb-4">
 					<h4 className="font-semibold text-gray-700">app/</h4>
 					<p>
@@ -53,6 +123,7 @@ const Aula01 = () => {
 						seu aplicativo.
 					</p>
 				</div>
+
 				<div className="mb-4">
 					<h4 className="font-semibold text-gray-700">layout.tsx</h4>
 					<p>
@@ -62,6 +133,7 @@ const Aula01 = () => {
 						consistência na aparência e no comportamento do seu aplicativo.
 					</p>
 				</div>
+
 				<h5 className="font-semibold mb-2 text-gray-700">O que podemos definir no layout?</h5>
 				<ul className="list-disc list-inside">
 					<li>Componentes de layout: Header, Footer, Sidebar e etc.</li>
