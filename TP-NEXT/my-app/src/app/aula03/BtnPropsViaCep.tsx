@@ -1,5 +1,5 @@
 'use client';
-import react, { useState } from 'react';
+import { useState } from 'react';
 
 type CepData = {
   cep: string;
@@ -13,7 +13,7 @@ type BtnViaCepProps = {
   cep: string;
 };
 
-const PropsBtnViaCep: React.FC<BtnViaCepProps> = ({ cep }) => {
+const BtnProspViaCep: React.FC<BtnViaCepProps> = ({ cep }) => {
 	const [cepData, setCepData] = useState<CepData | null>(null);
 	const [loading, setLoading] = useState(false);
 
@@ -59,4 +59,4 @@ const PropsBtnViaCep: React.FC<BtnViaCepProps> = ({ cep }) => {
   );
 }
 
-export default PropsBtnViaCep;
+export default BtnProspViaCep;
