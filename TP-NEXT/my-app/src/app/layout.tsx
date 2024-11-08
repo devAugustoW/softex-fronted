@@ -1,6 +1,5 @@
 import './globals.css';
 import Sidebar from '@/app/components/Sidebar';
-import Header  from './components/Header';
 
 export default function RootLayout({ 
 		children,
@@ -8,13 +7,11 @@ export default function RootLayout({
 
 	return (
 		<html lang="pt-br">
-			<body className="flex flex-col min-h-screen">
-				<Header />
-
-				<div className="flex flex-grow">
+			<body className="min-h-screen">
+				<div className="">
 					<Sidebar />
 
-					<main className="flex-grow p-8 bg-gray-50">
+					<main className="flex-grow p-8 bg-gray-50 ml-[170px]">
 						{children}
 					</main>
 				</div>

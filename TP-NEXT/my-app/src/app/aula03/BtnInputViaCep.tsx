@@ -2,12 +2,12 @@
 import { useState } from 'react';
 
 type CepData = {
-  cep: string;
-  logradouro: string;
-  bairro: string;
-  localidade: string;
-  uf: string;
-};
+	cep: string;
+	logradouro: string;
+	bairro: string;
+	localidade: string;
+	uf: string;
+}
 
 const BtnProspViaCep = () => {
 	const [inputCep, setInputCep] = useState('')
